@@ -24,6 +24,7 @@ public class InventoryService {
         .map(inventory ->
             InventoryResponse.builder()
                 .skuCode(inventory.getSkuCode())
+                .quantity(inventory.getQuantity())
                 .isInStock(inventory.getQuantity() > 0)
                 .build()
         ).toList());
@@ -38,6 +39,7 @@ public class InventoryService {
       if (!existingSkuCodes.contains(skuCode)) {
         inventoryResponseList.add(InventoryResponse.builder()
             .skuCode(skuCode)
+                .quantity(0)
             .isInStock(false)
             .build());
       }
